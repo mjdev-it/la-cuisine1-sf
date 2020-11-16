@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RecetteController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="container">
+     {{% for recette in recette %}}
+        <div class="md md-3">
+            <h2>{{ recette.title}}</h2>
+            <h3>{{ recette.category}}</h3>
+            <p class=""> {{ recette.image  }}</p>
+            <p class=""> {{ recette.content  }}</p>
+            <p>{{ recette.createdAt() | date('d/m/Y à H:i')}}</h2>
+                    </span>
+              {{% for comment in recette.comment %}}
+            <div class="comment">
+            <div class="raw">
+                <div class="col-3">
+                    <span>{{ comment.author}}<span class=""> {{ comment.createdAt() | date('d/m/Y à H:i') }}
+                    </span>
+                </div>
+                <div class="col">
+                    {{ comment.content | raw }}
+                </div>
+            </div>
+        </div>
+        {{% endfor %}}
+        </div>
+        {{% endfor %}}
+</div>
+{% endblock %}

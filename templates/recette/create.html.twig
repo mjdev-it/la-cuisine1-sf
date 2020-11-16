@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <article>
+        <h2> Création d'une recette </h2>
+        {{ form_start(formRecette)}}
+
+            {# ceci est commentaire dans twig #}
+            {# je commente ci-dessous. c'est au cas ou on veut avoir des options ? ou personnaliser ? #}
+            {# {{ form_error(formRecette.title) }} #}
+
+            {{ form_raw(formRecette.title {'attr': {'placeholer':"Titre de la recette"}}) }}
+             {{ form_raw(formRecette.category) }}
+           {{ form_raw(formRecette.content {'attr': {'placeholer':"Contenu de la recette"}}) }}
+            {{ form_raw(formRecette.image {'attr': {'placeholer':"URL de l'image"}}) }}
+            {{ form_raw(formRecette.createdAt() | date('d/m/Y à H:i') }}
+
+            <button class="btn btn-success">
+                {% if editMode %}
+                    Enregistrer les modifications
+                {% else %}
+                    Ajouter la recette
+                {% endif %}
+        {{ form_end(formRecette)}}
+    </article>
+{% endblock %}

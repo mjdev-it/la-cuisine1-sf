@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <article>
+        <h2>t{{ recette.title }}</h2>
+        <div class="metadata">Ecrit le {{ recette.createdAt | date('d/m/Y') }} à {{ recette.createdAt | date('H;i') }}mn 
+        dans la catégorie {{ recette.category.title }}</div>
+        <div class="content"><img source="{{ recette.image }}" label="">
+            {{ recette.content | raw }}
+    </article>
+    <section id="commentaires">
+        {{% for comment in recette.comment %}}
+        <div class="comment">
+            <div class="raw">
+                <div class="col-3">
+                    <span>{{ comment.author}}<span class=""> {{ comment.createdAt() | date('d/m/Y à H:i') }}
+                    </span>
+                </div>
+                <div class="col">
+                    {{ comment.content | raw}
+                </div>
+            </div>
+        </div>
+        {{% endfor %}}
+    </section>
+{% endblock %}
